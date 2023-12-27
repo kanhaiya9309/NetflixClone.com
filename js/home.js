@@ -9,8 +9,12 @@ fetch( genres_list_http + new URLSearchParams({
  .then(res=>res.json())
  .then(data=> {
      console.log(data);
-    data.genres.forEach(item => {
-        fetchMoviesListByGenres(item.id ,item.name); 
+    // data.genres.forEach(item => {
+    //     fetchMoviesListByGenres(item.id ,item.name); 
+   const filteredGenres = data.genres.filter(item => item.name !== 'TV Movie' && item.name !== 'Science Fiction');
+   console.log(filteredGenres)
+    filteredGenres.forEach(item => {
+         fetchMoviesListByGenres(item.id, item.name);
     });
  })
 
